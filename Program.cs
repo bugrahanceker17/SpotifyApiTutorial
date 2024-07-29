@@ -34,6 +34,32 @@ foreach (string item in playlistIds)
     }
 }
 
+Console.WriteLine("");
+Console.WriteLine("");
+Console.Write("Search a music : ");
+string? q = Console.ReadLine();
+
+var searchResult = await SearchForItem.Execute(q, SearchType._TRACK);
+
+Console.WriteLine("Search result : ");
+Console.WriteLine("-----------------------");
+
+for (int i = 0; i < searchResult.tracks.items.Count; i++)
+{
+    Console.WriteLine($"{i+1} -> {searchResult.tracks.items[i].name} ({string.Join(",", searchResult.tracks.items[i].artists.Select(c=>c.name))})");    
+}
+
+Console.WriteLine("");
+Console.WriteLine("");
+Console.Write("Please select a music : ");
+int selectedSearch = Convert.ToInt32(Console.ReadLine()) - 1;
+
+SearchForItemExternalIdsItem selectedSearchItem = searchResult.tracks.items[selectedSearch];
+
+
+
+
+
 
 
 
